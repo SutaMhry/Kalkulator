@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Konversi</title>
+    <link rel="stylesheet" href="currency.css" />
+  </head>
+  <body>
+    <nav>
+      <h1><a href="../calculator.html">Kalkulator</a></h1>
+      <div class="nav-links">
+          <div class="dropdown">
+              <button class="dropbtn">Konversi</button>
+              <div class="dropdown-content">
+                  <a href="area.html">Area</a>
+                  <a href="berat.html">Berat</a>
+                  <a href="energi.html">Energi</a>
+                  <a href="kecepatan.html">Kecepatan</a>
+                  <a href="panjang.html">Panjang</a>
+                  <a href="suhu.html">Suhu</a>
+                  <a href="uang.html">Uang</a>
+                  <a href="volume.html">Volume</a>
+                  <a href="waktu.html">Waktu</a>
+              </div>
+          </div>
+      </div>
+  </nav>
+    <div class="container">
+      <div class="inner-container">
+        <h1>Kalkulator Konversi Waktu</h1>
+
+        <!-- Konversi Umum -->
+        <div>
+          <label for="inputValue">Masukkan Nilai:</label>
+          <input type="text" id="inputValue" />
+
+          <label for="fromUnit">Pilih Satuan Asal:</label>
+          <select id="fromUnit">
+            <option value="second">Second (s)</option>
+            <option value="minute">Minute (min)</option>
+            <option value="hour">Hour (h)</option>
+            <option value="day">Day (d)</option>
+          </select>
+
+          <label for="toUnit">Pilih Satuan Tujuan:</label>
+          <select id="toUnit">
+            <option value="second">Second (s)</option>
+            <option value="minute">Minute (min)</option>
+            <option value="hour">Hour (h)</option>
+            <option value="day">Day (d)</option>
+          </select>
+
+
+          <div id="result">Hasil:</div>
+        </div>
+
+
+      </div>
+    </div>
+
+    <script>
+      const conversionRates = {
+        time: {
+          second: {
+            minute: (value) => value / 60,
+            hour: (value) => value / 3600,
+            day: (value) => value / 86400,
+          },
+          minute: {
+            second: (value) => value * 60,
+            hour: (value) => value / 60,
+            day: (value) => value / 1440,
+          },
+          hour: {
+            second: (value) => value * 3600,
+            minute: (value) => value * 60,
+            day: (value) => value / 24,
+          },
+          day: {
+            second: (value) => value * 86400,
+            minute: (value) => value * 1440,
+            hour: (value) => value * 24,
+          },
+        },
+      };
+
+      function convert() {
+        let inputValue = parseFloat(
+          document.getElementById("inputValue").value
+        );
+        let fromUnit = document.getElementById("fromUnit").value;
+        let toUnit = document.getElementById("toUnit").value;
+
+        let result = "";
+
+        if (isNaN(inputValue)) {
+          result = "Masukkan nilai yang valid!";
+        } else {
+          if (
+            conversionRates.time[fromUnit] &&
+            conversionRates.time[fromUnit][toUnit]
+          ) {
+            result =
+              conversionRates.time[fromUnit][toUnit](
+                inputValue
+              ).toLocaleString("en");
+          } else {
+            result = "Konversi tidak valid!";
+          }
+        }
+
+        document.getElementById("result").innerText = `Hasil: ${result}`;
+      }
+    </script>
+  </body>
+</html>

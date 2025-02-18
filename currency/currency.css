@@ -1,0 +1,163 @@
+/* Menghindari scroll horizontal & vertikal */
+html,
+body {
+  font-family: "Poppins", sans-serif;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Mencegah scroll ke samping */
+  background: rgb(14, 14, 14);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Navbar */
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgb(20, 20, 20);
+  padding: 10px 30px;
+  box-sizing: border-box;
+}
+
+nav h1 {
+  color: white;
+  text-decoration: none; /* Menghilangkan garis bawah pada h1 */
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+nav h1 a {
+  color: white; /* Warna teks link menjadi putih */
+  text-decoration: none; /* Menghilangkan garis bawah pada link */
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background: #33ccff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: rgb(30, 30, 30);
+  min-width: 160px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: white;
+  padding: 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background: #00ace6;
+}
+
+/* Tampilkan dropdown saat hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Tombol biasa */
+nav button.nav-btn {
+  background-color: #00ace6; /* Warna biru */
+  color: white; /* Warna teks putih */
+  border: none; /* Menghilangkan border */
+  padding: 10px 20px; /* Padding untuk tombol */
+  border-radius: 5px; /* Sudut membulat */
+  cursor: pointer; /* Pointer saat hover */
+  transition: background-color 0.3s ease; /* Efek transisi saat hover */
+}
+
+nav button.nav-btn:hover {
+  background-color: #008cba; /* Warna biru yang lebih gelap saat hover */
+}
+
+nav button a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Kontainer utama */
+.container {
+  color: white;
+  width: 100%;
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center; /* Menambahkan text-align: center pada kontainer */
+}
+
+/* Kontainer dalam */
+.inner-container {
+  width: 50%;
+  background: #222;
+  padding: 20px 20px;
+  border-radius: 15px;
+  text-align: center; /* Menambahkan text-align: center pada inner-container */
+}
+
+h1 {
+  font-size: 28px;
+  color: #ff9800;
+  text-align: center; /* Memastikan judul berada di tengah */
+}
+
+#result {
+  margin: 20px 0;
+  font-size: 20px;
+  color: #ff9800;
+  font-weight: bold;
+}
+
+label {
+  font-size: 18px;
+  margin-top: 15px;
+  display: block;
+}
+
+input,
+select {
+  width: 100%;
+  font-size: 20px;
+  padding: 10px;
+  margin: 15px 0;
+  border: 2px solid #555;
+  border-radius: 8px;
+  text-align: center;
+  background: rgb(14, 14, 14);
+  color: white;
+  box-sizing: border-box;
+}
+
+/* Hilangkan spinner pada input number */
+input[type="number"] {
+  appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Konversi</title>
+    <link rel="stylesheet" href="currency.css" />
+  </head>
+  <body>
+    <nav>
+      <h1><a href="../calculator.html">Kalkulator</a></h1>
+      <div class="nav-links">
+          <div class="dropdown">
+              <button class="dropbtn">Konversi</button>
+              <div class="dropdown-content">
+                  <a href="area.html">Area</a>
+                  <a href="berat.html">Berat</a>
+                  <a href="energi.html">Energi</a>
+                  <a href="kecepatan.html">Kecepatan</a>
+                  <a href="panjang.html">Panjang</a>
+                  <a href="suhu.html">Suhu</a>
+                  <a href="uang.html">Uang</a>
+                  <a href="volume.html">Volume</a>
+                  <a href="waktu.html">Waktu</a>
+              </div>
+          </div>
+      </div>
+  </nav>
+    <div class="container">
+      <div class="inner-container">
+        <h1>Kalkulator Konversi Volume</h1>
+
+        <!-- Konversi Umum -->
+        <div>
+          <label for="inputValue">Masukkan Nilai:</label>
+          <input type="number" id="inputValue" oninput="convert()" />
+
+          <label for="fromUnit">Pilih Satuan Asal:</label>
+          <select id="fromUnit">
+            <option value="liter">Liter (L)</option>
+            <option value="milliliter">Milliliter (mL)</option>
+            <option value="cubic_meter">Cubic Meter (m³)</option>
+            <option value="gallon">Gallon (gal)</option>
+          </select>
+
+          <label for="toUnit">Pilih Satuan Tujuan:</label>
+          <select id="toUnit">
+            <option value="liter">Liter (L)</option>
+            <option value="milliliter">Milliliter (mL)</option>
+            <option value="cubic_meter">Cubic Meter (m³)</option>
+            <option value="gallon">Gallon (gal)</option>
+          </select>
+
+
+          <div id="result">Hasil:</div>
+        </div>
+
+       
+      </div>
+    </div>
+
+    <script>
+      const conversionRates = {
+        volume: {
+          liter: {
+            milliliter: (value) => value * 1000,
+            cubic_meter: (value) => value / 1000,
+            gallon: (value) => value / 3.78541,
+          },
+          milliliter: {
+            liter: (value) => value / 1000,
+            cubic_meter: (value) => value / 1000000,
+            gallon: (value) => value / 3785.41,
+          },
+          cubic_meter: {
+            liter: (value) => value * 1000,
+            milliliter: (value) => value * 1000000,
+            gallon: (value) => value * 264.172,
+          },
+          gallon: {
+            liter: (value) => value * 3.78541,
+            milliliter: (value) => value * 3785.41,
+            cubic_meter: (value) => value / 264.172,
+          },
+        },
+      };
+
+      function convert() {
+        let inputValue = parseFloat(
+          document.getElementById("inputValue").value
+        );
+        let fromUnit = document.getElementById("fromUnit").value;
+        let toUnit = document.getElementById("toUnit").value;
+
+        let result = "";
+
+        if (isNaN(inputValue)) {
+          result = "Masukkan nilai yang valid!";
+        } else {
+          if (
+            conversionRates.volume[fromUnit] &&
+            conversionRates.volume[fromUnit][toUnit]
+          ) {
+            result =
+              conversionRates.volume[fromUnit][toUnit](
+                inputValue
+              ).toLocaleString("en");
+          } else {
+            result = "Konversi tidak valid!";
+          }
+        }
+
+        document.getElementById("result").innerText = `Hasil: ${result}`;
+      }
+    </script>
+  </body>
+</html>

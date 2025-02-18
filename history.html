@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>History</title>
+    <style>
+      /* Menghindari scroll horizontal & vertikal */
+      html,
+      body {
+        font-family: "Poppins", sans-serif;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden; /* Mencegah scroll ke samping */
+        background-color: #121212; /* Tema gelap */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #fff; /* Warna teks putih untuk kontras */
+      }
+
+      /* Navbar */
+      nav {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        background: #1e1e1e;
+        padding: 15px 30px;
+        box-sizing: border-box;
+        border-bottom: 1px solid #444;
+      }
+
+      nav h1 {
+        color: #ffffff;
+        text-decoration: none;
+        margin: 0;
+        font-size: 24px;
+        font-weight: 600;
+      }
+
+      nav h1 a {
+        color: #ffffff; /* Warna teks link menjadi putih */
+        text-decoration: none; /* Menghilangkan garis bawah pada link */
+      }
+
+      /* Tombol Navigasi */
+      .nav-btn {
+        background: #33ccff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        transition: 0.3s;
+        cursor: pointer;
+      }
+
+      .nav-btn a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 16px;
+      }
+
+      .nav-btn:hover {
+        background: #00ace6;
+      }
+
+      /* Container utama */
+      .history {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        min-height: calc(100vh - 60px); /* Agar tetap memenuhi layar */
+        padding: 20px;
+        box-sizing: border-box; /* Mencegah elemen keluar dari batas */
+        background-color: #1e1e1e; /* Warna latar belakang untuk area utama */
+      }
+
+      /* Judul History */
+      .history h2 {
+        font-size: 28px;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 20px;
+      }
+
+      /* Daftar History */
+      #historyList {
+        list-style-type: none;
+        padding: 0;
+        width: 100%;
+        max-width: 800px;
+        background: rgb(20, 20, 20);
+        border-radius: 8px;
+        margin: 0 auto 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      }
+
+      #historyList li {
+        padding: 12px 20px;
+        border-bottom: 1px solid #444;
+        font-size: 18px;
+      }
+
+      #historyList li:last-child {
+        border-bottom: none;
+      }
+
+      #historyList li:hover {
+        background: rgb(30, 30, 30);
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      /* Tombol Clear */
+      #clearHistory {
+        background-color: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      #clearHistory:hover {
+        background-color: #ff3333;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <h1><a href="calculator.html">Kalkulator</a></h1>
+    </nav>
+
+    <div class="history">
+      <h2 style="font-family: Roboto; justify-content: center; color: white">
+        History
+      </h2>
+      <ul id="historyList" style="font-family: Roboto"></ul>
+      <button id="clearHistory" onclick="clearHistory()">Clear</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

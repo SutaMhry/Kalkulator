@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <nav>
+      <h1><a href="calculator.html">Kalkulator</a></h1>
+      <div class="nav-links">
+          <div class="dropdown">
+              <button class="dropbtn">Konversi</button>
+              <div class="dropdown-content">
+                  <a href="currency/area.html">Area</a>
+                  <a href="currency/berat.html">Berat</a>
+                  <a href="currency/energi.html">Energi</a>
+                  <a href="currency/kecepatan.html">Kecepatan</a>
+                  <a href="currency/panjang.html">Panjang</a>
+                  <a href="currency/suhu.html">Suhu</a>
+                  <a href="currency/uang.html">Uang</a>
+                  <a href="currency/volume.html">Volume</a>
+                  <a href="currency/waktu.html">Waktu</a>
+              </div>
+          </div>
+          <button class="nav-btn"><a href="history.html">History</a></button>
+      </div>
+  </nav>
+
+    <div class="container">
+      <div class="calculator">
+        <div class="display">
+          <input id="screen" type="text" placeholder="0" readonly />
+        </div>
+        <div class="btns">
+          <div class="row">
+            <button id="ce" onclick="backspc()">CE</button>
+            <button onclick="fact()">x!</button>
+            <button class="btn">(</button>
+            <button class="btn">)</button>
+            <button class="btn">%</button>
+            <button id="ac" onclick="screen.value=''">AC</button>
+          </div>
+          <div class="row">
+            <button onclick="sin()">sin</button>
+            <button onclick="pi()">π</button>
+            <button class="btn">7</button>
+            <button class="btn">8</button>
+            <button class="btn">9</button>
+            <button class="btn">÷</button>
+          </div>
+          <div class="row">
+            <button onclick="cos()">cos</button>
+            <button onclick="log()">log</button>
+            <button class="btn">4</button>
+            <button class="btn">5</button>
+            <button class="btn">6</button>
+            <button class="btn">×</button>
+          </div>
+          <div class="row">
+            <button onclick="tan()">tan</button>
+            <button onclick="sqrt()">√</button>
+            <button class="btn">1</button>
+            <button class="btn">2</button>
+            <button class="btn">3</button>
+            <button class="btn">-</button>
+          </div>
+          <div class="row">
+            <button onclick="insertE()">e</button>
+            <button onclick="powXY()">x<sup>y</sup></button>
+            <button class="btn">0</button>
+            <button class="btn">,</button>
+            <button id="eval" onclick="evaluateExpression()">=</button>
+            <button class="btn">+</button>
+          </div>
+        </div>
+      </div>
+    <script src="script.js"></script>
+  </body>
+</html>

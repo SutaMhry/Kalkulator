@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kalkulator Konversi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="currency.css">
+  </head>
+  <body>
+    <nav>
+      <h1><a href="../calculator.html">Kalkulator</a></h1>
+      <div class="nav-links">
+          <div class="dropdown">
+              <button class="dropbtn">Konversi</button>
+              <div class="dropdown-content">
+                  <a href="area.html">Area</a>
+                  <a href="berat.html">Berat</a>
+                  <a href="energi.html">Energi</a>
+                  <a href="kecepatan.html">Kecepatan</a>
+                  <a href="panjang.html">Panjang</a>
+                  <a href="suhu.html">Suhu</a>
+                  <a href="uang.html">Uang</a>
+                  <a href="volume.html">Volume</a>
+                  <a href="waktu.html">Waktu</a>
+              </div>
+          </div>
+      </div>
+  </nav>
+    <div class="container">
+      <div class="inner-container">
+        <h1>Kalkulator Konversi Area</h1>
+
+        <!-- Konversi Umum -->
+        <div>
+          <label for="inputValue">Masukkan Nilai:</label>
+          <input type="number" id="inputValue" oninput="convert()" />
+
+          <label for="fromUnit">Pilih Satuan Asal:</label>
+          <select id="fromUnit">
+            <option value="square_meter">Square Meter (m²)</option>
+            <option value="square_kilometer">Square Kilometer (km²)</option>
+            <option value="hectare">Hectare (ha)</option>
+            <option value="square_foot">Square Foot (ft²)</option>
+            <option value="acre">Acre (ac)</option>
+          </select>
+
+          <label for="toUnit">Pilih Satuan Tujuan:</label>
+          <select id="toUnit">
+            <option value="square_meter">Square Meter (m²)</option>
+            <option value="square_kilometer">Square Kilometer (km²)</option>
+            <option value="hectare">Hectare (ha)</option>
+            <option value="square_foot">Square Foot (ft²)</option>
+            <option value="acre">Acre (ac)</option>
+          </select>
+
+          <div id="result">Hasil:</div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const conversionRates = {
+        area: {
+          square_meter: {
+            square_kilometer: (value) => value / 1000000,
+            hectare: (value) => value / 10000,
+            square_foot: (value) => value * 10.7639,
+            acre: (value) => value / 4046.86,
+          },
+          square_kilometer: {
+            square_meter: (value) => value * 1000000,
+            hectare: (value) => value * 100,
+            square_foot: (value) => value * 10763910.4,
+            acre: (value) => value * 247.105,
+          },
+          hectare: {
+            square_meter: (value) => value * 10000,
+            square_kilometer: (value) => value / 100,
+            square_foot: (value) => value * 107639.104,
+            acre: (value) => value * 2.47105,
+          },
+          square_foot: {
+            square_meter: (value) => value / 10.7639,
+            square_kilometer: (value) => value / 10763910.4,
+            hectare: (value) => value / 107639.104,
+            acre: (value) => value / 43560,
+          },
+          acre: {
+            square_meter: (value) => value * 4046.86,
+            square_kilometer: (value) => value / 247.105,
+            hectare: (value) => value / 2.47105,
+            square_foot: (value) => value * 43560,
+          },
+        },
+      };
+
+      function convert() {
+        let inputValue = parseFloat(
+          document.getElementById("inputValue").value
+        );
+        let fromUnit = document.getElementById("fromUnit").value;
+        let toUnit = document.getElementById("toUnit").value;
+
+        let result = "";
+
+        if (isNaN(inputValue)) {
+          result = "Masukkan nilai yang valid!";
+        } else {
+          if (
+            conversionRates.area[fromUnit] &&
+            conversionRates.area[fromUnit][toUnit]
+          ) {
+            result =
+              conversionRates.area[fromUnit][toUnit](
+                inputValue
+              ).toLocaleString("en");
+          } else {
+            result = "Konversi tidak valid!";
+          }
+        }
+
+        document.getElementById("result").innerText = `Hasil: ${result}`;
+      }
+    </script>
+  </body>
+</html>
