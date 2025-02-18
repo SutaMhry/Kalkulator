@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalkulator Konversi</title>
-    <link rel="stylesheet" href="currency.css" />
+    <link rel="stylesheet" href="konversi.css">
+   
   </head>
   <body>
     <nav>
-      <h1><a href="../calculator.html">Kalkulator</a></h1>
+      <h1><a href="../kalkulator.html">Kalkulator</a></h1>
       <div class="nav-links">
           <div class="dropdown">
               <button class="dropbtn">Konversi</button>
@@ -28,7 +29,7 @@
   </nav>
     <div class="container">
       <div class="inner-container">
-        <h1>Kalkulator Konversi Volume</h1>
+        <h1>Kalkulator Konversi Kecepatan</h1>
 
         <!-- Konversi Umum -->
         <div>
@@ -37,50 +38,36 @@
 
           <label for="fromUnit">Pilih Satuan Asal:</label>
           <select id="fromUnit">
-            <option value="liter">Liter (L)</option>
-            <option value="milliliter">Milliliter (mL)</option>
-            <option value="cubic_meter">Cubic Meter (m³)</option>
-            <option value="gallon">Gallon (gal)</option>
+            <option value="kmh">Kilometer per Jam (km/h)</option>
+            <option value="ms">Meter per Detik (m/s)</option>
+            <option value="mph">Mil per Jam (mph)</option>
           </select>
 
           <label for="toUnit">Pilih Satuan Tujuan:</label>
           <select id="toUnit">
-            <option value="liter">Liter (L)</option>
-            <option value="milliliter">Milliliter (mL)</option>
-            <option value="cubic_meter">Cubic Meter (m³)</option>
-            <option value="gallon">Gallon (gal)</option>
+            <option value="kmh">Kilometer per Jam (km/h)</option>
+            <option value="ms">Meter per Detik (m/s)</option>
+            <option value="mph">Mil per Jam (mph)</option>
           </select>
-
 
           <div id="result">Hasil:</div>
         </div>
-
-       
-      </div>
     </div>
 
     <script>
       const conversionRates = {
-        volume: {
-          liter: {
-            milliliter: (value) => value * 1000,
-            cubic_meter: (value) => value / 1000,
-            gallon: (value) => value / 3.78541,
+        speed: {
+          kmh: {
+            ms: (value) => value / 3.6,
+            mph: (value) => value * 0.621371,
           },
-          milliliter: {
-            liter: (value) => value / 1000,
-            cubic_meter: (value) => value / 1000000,
-            gallon: (value) => value / 3785.41,
+          ms: {
+            kmh: (value) => value * 3.6,
+            mph: (value) => value * 2.23694,
           },
-          cubic_meter: {
-            liter: (value) => value * 1000,
-            milliliter: (value) => value * 1000000,
-            gallon: (value) => value * 264.172,
-          },
-          gallon: {
-            liter: (value) => value * 3.78541,
-            milliliter: (value) => value * 3785.41,
-            cubic_meter: (value) => value / 264.172,
+          mph: {
+            kmh: (value) => value / 0.621371,
+            ms: (value) => value / 2.23694,
           },
         },
       };
@@ -98,11 +85,11 @@
           result = "Masukkan nilai yang valid!";
         } else {
           if (
-            conversionRates.volume[fromUnit] &&
-            conversionRates.volume[fromUnit][toUnit]
+            conversionRates.speed[fromUnit] &&
+            conversionRates.speed[fromUnit][toUnit]
           ) {
             result =
-              conversionRates.volume[fromUnit][toUnit](
+              conversionRates.speed[fromUnit][toUnit](
                 inputValue
               ).toLocaleString("en");
           } else {

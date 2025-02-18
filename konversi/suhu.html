@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalkulator Konversi</title>
-    <link rel="stylesheet" href="currency.css">
-   
+    <link rel="stylesheet" href="konversi.css">
+    
   </head>
   <body>
     <nav>
-      <h1><a href="../calculator.html">Kalkulator</a></h1>
+      <h1><a href="../kalkulator.html">Kalkulator</a></h1>
       <div class="nav-links">
           <div class="dropdown">
               <button class="dropbtn">Konversi</button>
@@ -29,7 +29,7 @@
   </nav>
     <div class="container">
       <div class="inner-container">
-        <h1>Kalkulator Konversi Energi</h1>
+        <h1>Kalkulator Konversi Suhu</h1>
 
         <!-- Konversi Umum -->
         <div>
@@ -38,40 +38,40 @@
 
           <label for="fromUnit">Pilih Satuan Asal:</label>
           <select id="fromUnit">
-            <option value="joule">Joule (J)</option>
-            <option value="calorie">Calorie (cal)</option>
-            <option value="kilowatt_hour">Kilowatt-hour (kWh)</option>
+            <option value="celsius">Celsius (°C)</option>
+            <option value="kelvin">Kelvin (K)</option>
+            <option value="fahrenheit">Fahrenheit (°F)</option>
           </select>
 
           <label for="toUnit">Pilih Satuan Tujuan:</label>
           <select id="toUnit">
-            <option value="joule">Joule (J)</option>
-            <option value="calorie">Calorie (cal)</option>
-            <option value="kilowatt_hour">Kilowatt-hour (kWh)</option>
+            <option value="celsius">Celsius (°C)</option>
+            <option value="kelvin">Kelvin (K)</option>
+            <option value="fahrenheit">Fahrenheit (°F)</option>
           </select>
 
 
           <div id="result">Hasil:</div>
         </div>
 
-       
+        
       </div>
     </div>
 
     <script>
       const conversionRates = {
-        energy: {
-          joule: {
-            calorie: (value) => value / 4.184,
-            kilowatt_hour: (value) => value / 3600000,
+        temperature: {
+          celsius: {
+            kelvin: (value) => value + 273.15,
+            fahrenheit: (value) => (value * 9) / 5 + 32,
           },
-          calorie: {
-            joule: (value) => value * 4.184,
-            kilowatt_hour: (value) => value / 860421,
+          kelvin: {
+            celsius: (value) => value - 273.15,
+            fahrenheit: (value) => ((value - 273.15) * 9) / 5 + 32,
           },
-          kilowatt_hour: {
-            joule: (value) => value * 3600000,
-            calorie: (value) => value * 860421,
+          fahrenheit: {
+            celsius: (value) => ((value - 32) * 5) / 9,
+            kelvin: (value) => ((value - 32) * 5) / 9 + 273.15,
           },
         },
       };
@@ -89,11 +89,11 @@
           result = "Masukkan nilai yang valid!";
         } else {
           if (
-            conversionRates.energy[fromUnit] &&
-            conversionRates.energy[fromUnit][toUnit]
+            conversionRates.temperature[fromUnit] &&
+            conversionRates.temperature[fromUnit][toUnit]
           ) {
             result =
-              conversionRates.energy[fromUnit][toUnit](
+              conversionRates.temperature[fromUnit][toUnit](
                 inputValue
               ).toLocaleString("en");
           } else {

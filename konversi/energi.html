@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalkulator Konversi</title>
-    <link rel="stylesheet" href="currency.css">
+    <link rel="stylesheet" href="konversi.css">
    
   </head>
   <body>
     <nav>
-      <h1><a href="../calculator.html">Kalkulator</a></h1>
+      <h1><a href="../kalkulator.html">Kalkulator</a></h1>
       <div class="nav-links">
           <div class="dropdown">
               <button class="dropbtn">Konversi</button>
@@ -29,7 +29,7 @@
   </nav>
     <div class="container">
       <div class="inner-container">
-        <h1>Kalkulator Konversi Berat</h1>
+        <h1>Kalkulator Konversi Energi</h1>
 
         <!-- Konversi Umum -->
         <div>
@@ -38,39 +38,40 @@
 
           <label for="fromUnit">Pilih Satuan Asal:</label>
           <select id="fromUnit">
-            <option value="kilogram">Kilogram (kg)</option>
-            <option value="gram">Gram (g)</option>
-            <option value="pound">Pound (lb)</option>
+            <option value="joule">Joule (J)</option>
+            <option value="calorie">Calorie (cal)</option>
+            <option value="kilowatt_hour">Kilowatt-hour (kWh)</option>
           </select>
 
           <label for="toUnit">Pilih Satuan Tujuan:</label>
           <select id="toUnit">
-            <option value="kilogram">Kilogram (kg)</option>
-            <option value="gram">Gram (g)</option>
-            <option value="pound">Pound (lb)</option>
+            <option value="joule">Joule (J)</option>
+            <option value="calorie">Calorie (cal)</option>
+            <option value="kilowatt_hour">Kilowatt-hour (kWh)</option>
           </select>
+
 
           <div id="result">Hasil:</div>
         </div>
 
-      
+       
       </div>
     </div>
 
     <script>
       const conversionRates = {
-        weight: {
-          kilogram: {
-            gram: (value) => value * 1000,
-            pound: (value) => value * 2.20462,
+        energy: {
+          joule: {
+            calorie: (value) => value / 4.184,
+            kilowatt_hour: (value) => value / 3600000,
           },
-          gram: {
-            kilogram: (value) => value / 1000,
-            pound: (value) => value / 453.592,
+          calorie: {
+            joule: (value) => value * 4.184,
+            kilowatt_hour: (value) => value / 860421,
           },
-          pound: {
-            kilogram: (value) => value / 2.20462,
-            gram: (value) => value * 453.592,
+          kilowatt_hour: {
+            joule: (value) => value * 3600000,
+            calorie: (value) => value * 860421,
           },
         },
       };
@@ -88,11 +89,11 @@
           result = "Masukkan nilai yang valid!";
         } else {
           if (
-            conversionRates.weight[fromUnit] &&
-            conversionRates.weight[fromUnit][toUnit]
+            conversionRates.energy[fromUnit] &&
+            conversionRates.energy[fromUnit][toUnit]
           ) {
             result =
-              conversionRates.weight[fromUnit][toUnit](
+              conversionRates.energy[fromUnit][toUnit](
                 inputValue
               ).toLocaleString("en");
           } else {

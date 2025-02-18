@@ -4,12 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kalkulator Konversi</title>
-    <link rel="stylesheet" href="currency.css">
-    
+    <link rel="stylesheet" href="konversi.css" />
   </head>
   <body>
     <nav>
-      <h1><a href="../calculator.html">Kalkulator</a></h1>
+      <h1><a href="../kalkulator.html">Kalkulator</a></h1>
       <div class="nav-links">
           <div class="dropdown">
               <button class="dropbtn">Konversi</button>
@@ -29,49 +28,59 @@
   </nav>
     <div class="container">
       <div class="inner-container">
-        <h1>Kalkulator Konversi Suhu</h1>
+        <h1>Kalkulator Konversi Waktu</h1>
 
         <!-- Konversi Umum -->
         <div>
           <label for="inputValue">Masukkan Nilai:</label>
-          <input type="number" id="inputValue" oninput="convert()" />
+          <input type="text" id="inputValue" />
 
           <label for="fromUnit">Pilih Satuan Asal:</label>
           <select id="fromUnit">
-            <option value="celsius">Celsius (°C)</option>
-            <option value="kelvin">Kelvin (K)</option>
-            <option value="fahrenheit">Fahrenheit (°F)</option>
+            <option value="second">Second (s)</option>
+            <option value="minute">Minute (min)</option>
+            <option value="hour">Hour (h)</option>
+            <option value="day">Day (d)</option>
           </select>
 
           <label for="toUnit">Pilih Satuan Tujuan:</label>
           <select id="toUnit">
-            <option value="celsius">Celsius (°C)</option>
-            <option value="kelvin">Kelvin (K)</option>
-            <option value="fahrenheit">Fahrenheit (°F)</option>
+            <option value="second">Second (s)</option>
+            <option value="minute">Minute (min)</option>
+            <option value="hour">Hour (h)</option>
+            <option value="day">Day (d)</option>
           </select>
 
 
           <div id="result">Hasil:</div>
         </div>
 
-        
+
       </div>
     </div>
 
     <script>
       const conversionRates = {
-        temperature: {
-          celsius: {
-            kelvin: (value) => value + 273.15,
-            fahrenheit: (value) => (value * 9) / 5 + 32,
+        time: {
+          second: {
+            minute: (value) => value / 60,
+            hour: (value) => value / 3600,
+            day: (value) => value / 86400,
           },
-          kelvin: {
-            celsius: (value) => value - 273.15,
-            fahrenheit: (value) => ((value - 273.15) * 9) / 5 + 32,
+          minute: {
+            second: (value) => value * 60,
+            hour: (value) => value / 60,
+            day: (value) => value / 1440,
           },
-          fahrenheit: {
-            celsius: (value) => ((value - 32) * 5) / 9,
-            kelvin: (value) => ((value - 32) * 5) / 9 + 273.15,
+          hour: {
+            second: (value) => value * 3600,
+            minute: (value) => value * 60,
+            day: (value) => value / 24,
+          },
+          day: {
+            second: (value) => value * 86400,
+            minute: (value) => value * 1440,
+            hour: (value) => value * 24,
           },
         },
       };
@@ -89,11 +98,11 @@
           result = "Masukkan nilai yang valid!";
         } else {
           if (
-            conversionRates.temperature[fromUnit] &&
-            conversionRates.temperature[fromUnit][toUnit]
+            conversionRates.time[fromUnit] &&
+            conversionRates.time[fromUnit][toUnit]
           ) {
             result =
-              conversionRates.temperature[fromUnit][toUnit](
+              conversionRates.time[fromUnit][toUnit](
                 inputValue
               ).toLocaleString("en");
           } else {
